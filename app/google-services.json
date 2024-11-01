@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "730639648045",
+    "project_id": "moviltaller3-39f07",
+    "storage_bucket": "moviltaller3-39f07.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:730639648045:android:fd0f23c0923c1a4d62ffa4",
+        "android_client_info": {
+          "package_name": "com.example.moviltaller3"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrSBuq9vYGjuVkk-08Mu9jHf2Pdt7NQnU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
