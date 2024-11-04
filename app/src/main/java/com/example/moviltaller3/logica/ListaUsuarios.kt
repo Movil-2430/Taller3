@@ -67,7 +67,7 @@ class ListaUsuarios : AppCompatActivity() {
                 for (snap in snapshot.children) {
                     val user = snap.getValue(UserPOJO::class.java)
                     // Agregar solo los usuarios disponibles y que no sean el usuario actual
-                    if (user != null && user.status == UserStatus.AVAILABLE.status) {
+                    if (user != null && user.status == UserStatus.AVAILABLE.status && user.uid != auth.currentUser?.uid) {
                         usersAvailable.add(user)
                     }
                 }
