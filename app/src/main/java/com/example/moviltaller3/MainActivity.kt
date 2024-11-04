@@ -13,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.moviltaller3.databinding.ActivityMainBinding
 import com.example.moviltaller3.logica.PantallaPrincipal
 import com.example.moviltaller3.logica.Registro
+import com.example.moviltaller3.service.AvailabilityService
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -28,6 +29,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         auth = Firebase.auth
+
+        //inicia el servicio
+        val intent = Intent(this, AvailabilityService::class.java)
+        startService(intent)
+        Log.d("MainActivity", "AvailabilityService iniciado")
 
         binding.loginButton.setOnClickListener {
             signInUser(binding.emailEditText.text.toString(), binding.passwordEditText.text.toString())
