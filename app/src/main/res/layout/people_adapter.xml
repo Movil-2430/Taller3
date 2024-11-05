@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/peopleFirstName"
+        style="@style/PeopleMainLabels"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="John" />
+
+    <TextView
+        android:id="@+id/peopleLastName"
+        style="@style/PeopleMainLabels"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:ellipsize="end"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/peopleFirstName"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Doe" />
+
+    <TextView
+        android:id="@+id/peopleAddress"
+        style="@style/PeopleSecondaryLabels"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="320dp"
+        android:layout_marginTop="3dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/peopleFirstName"
+        tools:text="FK ST 123 TO 890" />
+
+    <TextView
+        android:id="@+id/peopleCity"
+        style="@style/PeopleSecondaryLabels"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:singleLine="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/peopleAddress"
+        tools:text="BOGOTA" />
+
+    <TextView
+        android:id="@+id/peopleAge"
+        style="@style/PeopleSecondaryLabels"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="100 Yrs" />
+
+    <TextView
+        android:id="@+id/peopleHeight"
+        style="@style/PeopleSecondaryLabels"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/peopleAge"
+        tools:text="1.05 m" />
+
+    <TextView
+        android:id="@+id/peopleWeight"
+        style="@style/PeopleSecondaryLabels"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/peopleHeight"
+        tools:text="80.5 k" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
