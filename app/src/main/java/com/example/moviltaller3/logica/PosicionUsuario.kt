@@ -50,6 +50,8 @@ class PosicionUsuario : AppCompatActivity() {
     private lateinit var myRef: DatabaseReference
 
     private lateinit var usuarioObjetivo: UserPOJO
+    private lateinit var objectiveUserChangesListener: ValueEventListener
+    private var isListenerActive = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -136,6 +138,9 @@ class PosicionUsuario : AppCompatActivity() {
                 loadObjectiveUser(objectiveUID)
                 if (::usuarioObjetivo.isInitialized) {
                     myRef = database.getReference(Data.DATABASE_USERS_PATH + usuarioObjetivo.uid)
+                    initObjectiveUserChangesListener()
+                    myRef.addValueEventListener(objectiveUserChangesListener)
+                    isListenerActive = true
                 }
             }
         }
@@ -161,16 +166,50 @@ class PosicionUsuario : AppCompatActivity() {
         }
     }
 
+    private fun initObjectiveUserChangesListener(){
+        objectiveUserChangesListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val user = dataSnapshot.getValue(UserPOJO::class.java)
+                if (user != null) {
+                    usuarioObjetivo = user
+                    val userLocation = Location("userLocation").apply {
+                        latitude = user.latitude
+                        longitude = user.longitude
+                    }
+                    updateMarker(userLocation)
+                    val distancia = AppUtilityHelper.distanceBetweenTwoPoints(currentLocation.latitude, currentLocation.longitude, user.latitude, user.longitude)
+                    Toast.makeText(this@PosicionUsuario, "Distancia: $distancia km", Toast.LENGTH_SHORT).show()
+                }
+                Log.d("UserStatus", "User location updated")
+            }
+            override fun onCancelled(databaseError: DatabaseError) {
+                Log.w("UserStatus", "error en la consulta", databaseError.toException())
+            }
+        }
+    }
 
     override fun onResume() {
         super.onResume()
         map.onResume()
         mapController = map.controller
         mapController.setZoom(normalZoom)
+
+        if (!isListenerActive && ::myRef.isInitialized) {
+            myRef.addValueEventListener(objectiveUserChangesListener)
+            isListenerActive = true
+        }
     }
     override fun onPause() {
         super.onPause()
         map.onPause()
+        stopLocationUpdates()
+    }
+
+    private fun stopLocationUpdates() {
+        if (isListenerActive) {
+            myRef.removeEventListener(objectiveUserChangesListener)
+            isListenerActive = false
+        }
     }
 
 }

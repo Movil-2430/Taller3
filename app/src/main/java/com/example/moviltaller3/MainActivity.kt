@@ -31,8 +31,7 @@ class MainActivity : AppCompatActivity() {
         auth = Firebase.auth
 
         //inicia el servicio
-        val intent = Intent(this, AvailabilityService::class.java)
-        startService(intent)
+
         Log.d("MainActivity", "AvailabilityService iniciado")
 
         binding.loginButton.setOnClickListener {

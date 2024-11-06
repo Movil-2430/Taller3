@@ -23,6 +23,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import android.util.Log
+import com.example.moviltaller3.service.AvailabilityService
 import com.google.firebase.database.ValueEventListener
 
 
@@ -40,6 +41,8 @@ class ListaUsuarios : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityListaUsuariosBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val intent = Intent(this, AvailabilityService::class.java)
+        startService(intent)
 
         // Inicializar Firebase
         database = FirebaseDatabase.getInstance()
